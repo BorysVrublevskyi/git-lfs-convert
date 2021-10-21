@@ -1,0 +1,405 @@
+# Auto detect text files and perform LF normalization
+# https://www.davidlaing.com/2012/09/19/customise-your-gitattributes-to-become-a-git-ninja/
+*    text=auto
+
+*.cs text diff=csharp
+# Java sources
+*.java          text diff=java
+*.gradle        text diff=java
+*.gradle.kts    text diff=java
+
+# These files are text and should be normalized (Convert crlf => lf)
+*.css           text diff=css
+*.df            text
+*.htm           text diff=html
+*.html          text diff=html
+*.js            text
+*.jsp           text
+*.jspf          text
+*.jspx          text
+*.properties    text
+*.tld           text
+*.tag           text
+*.tagx          text
+*.xml           text
+
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.class         filter=lfs diff=lfs merge=lfs -text
+*.dll           filter=lfs diff=lfs merge=lfs -text
+*.ear           filter=lfs diff=lfs merge=lfs -text
+*.jar           filter=lfs diff=lfs merge=lfs -text
+*.so            filter=lfs diff=lfs merge=lfs -text
+*.war           filter=lfs diff=lfs merge=lfs -text
+# compare .pbxproj files as binary and always merge as union
+*.pbxproj binary -merge=union
+*.m       text diff=objc
+# Basic .gitattributes for a python repo.
+
+# Source files
+# ============
+*.pxd    text diff=python
+*.py     text diff=python
+*.py3    text diff=python
+*.pyw    text diff=python
+*.pyx    text diff=python
+*.pyz    text diff=python
+
+# Binary files
+# ============
+*.db     filter=lfs diff=lfs merge=lfs -text
+*.p      filter=lfs diff=lfs merge=lfs -text
+*.pkl    filter=lfs diff=lfs merge=lfs -text
+*.pickle filter=lfs diff=lfs merge=lfs -text
+*.pyc    filter=lfs diff=lfs merge=lfs -text
+*.pyd    filter=lfs diff=lfs merge=lfs -text
+*.pyo    filter=lfs diff=lfs merge=lfs -text
+
+# Jupyter notebook
+*.ipynb  text
+
+# Note: .db, .p, and .pkl files are associated
+# with the python modules ``pickle``, ``dbm.*``,
+# ``shelve``, ``marshal``, ``anydbm``, & ``bsddb``
+# (among others).
+# Swift gitattributes
+*.pbxproj merge=union
+*.swift   text diff=swift
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
+*            text=auto
+
+###############################################################################
+# Set the merge driver for project and solution files
+#
+# Merging from the command prompt will add diff markers to the files if there
+# are conflicts (Merging from VS is not affected by the settings below, in VS
+# the diff markers are never inserted). Diff markers may cause the following
+# file extensions to fail to load in VS. An alternative would be to treat
+# these files as binary and thus will always conflict and require user
+# intervention with every merge. To do so, just comment the entries below and
+# uncomment the group further below
+###############################################################################
+
+*.sln        text eol=crlf
+*.csproj     text eol=crlf
+*.vbproj     text eol=crlf
+*.vcxproj    text eol=crlf
+*.vcproj     text eol=crlf
+*.dbproj     text eol=crlf
+*.fsproj     text eol=crlf
+*.lsproj     text eol=crlf
+*.wixproj    text eol=crlf
+*.modelproj  text eol=crlf
+*.sqlproj    text eol=crlf
+*.wmaproj    text eol=crlf
+
+*.xproj      text eol=crlf
+*.props      text eol=crlf
+*.filters    text eol=crlf
+*.vcxitems   text eol=crlf
+
+
+#*.sln       merge=filter=lfs diff=lfs merge=lfs -text
+#*.csproj    merge=filter=lfs diff=lfs merge=lfs -text
+#*.vbproj    merge=filter=lfs diff=lfs merge=lfs -text
+#*.vcxproj   merge=filter=lfs diff=lfs merge=lfs -text
+#*.vcproj    merge=filter=lfs diff=lfs merge=lfs -text
+#*.dbproj    merge=filter=lfs diff=lfs merge=lfs -text
+#*.fsproj    merge=filter=lfs diff=lfs merge=lfs -text
+#*.lsproj    merge=filter=lfs diff=lfs merge=lfs -text
+#*.wixproj   merge=filter=lfs diff=lfs merge=lfs -text
+#*.modelproj merge=filter=lfs diff=lfs merge=lfs -text
+#*.sqlproj   merge=filter=lfs diff=lfs merge=lfs -text
+#*.wwaproj   merge=filter=lfs diff=lfs merge=lfs -text
+
+#*.xproj     merge=filter=lfs diff=lfs merge=lfs -text
+#*.props     merge=filter=lfs diff=lfs merge=lfs -text
+#*.filters   merge=filter=lfs diff=lfs merge=lfs -text
+#*.vcxitems  merge=filter=lfs diff=lfs merge=lfs -text
+## GITATTRIBUTES FOR WEB PROJECTS
+#
+# These settings are for any web project.
+#
+# Details per file setting:
+#   text    These files should be normalized (i.e. convert CRLF to LF).
+#   binary  These files are binary and should be left untouched.
+#
+# Note that binary is a macro for -text -diff.
+######################################################################
+
+# Auto detect
+##   Handle line endings automatically for files detected as
+##   text and leave all files detected as binary untouched.
+##   This will handle all files NOT defined below.
+*                 text=auto
+
+# Source code
+*.bash            text eol=lf
+*.bat             text eol=crlf
+*.cmd             text eol=crlf
+*.coffee          text
+*.css             text
+*.htm             text diff=html
+*.html            text diff=html
+*.inc             text
+*.ini             text
+*.js              text
+*.json            text
+*.jsx             text
+*.less            text
+*.ls              text
+*.map             text -diff
+*.od              text
+*.onlydata        text
+*.php             text diff=php
+*.pl              text
+*.ps1             text eol=crlf
+*.py              text diff=python
+*.rb              text diff=ruby
+*.sass            text
+*.scm             text
+*.scss            text diff=css
+*.sh              text eol=lf
+*.sql             text
+*.styl            text
+*.tag             text
+*.ts              text
+*.tsx             text
+*.xml             text
+*.xhtml           text diff=html
+
+# Docker
+Dockerfile        text
+
+# Documentation
+*.ipynb           text
+*.markdown        text
+*.md              text
+*.mdwn            text
+*.mdown           text
+*.mkd             text
+*.mkdn            text
+*.mdtxt           text
+*.mdtext          text
+*.txt             text
+AUTHORS           text
+CHANGELOG         text
+CHANGES           text
+CONTRIBUTING      text
+COPYING           text
+copyright         text
+*COPYRIGHT*       text
+INSTALL           text
+license           text
+LICENSE           text
+NEWS              text
+readme            text
+*README*          text
+TODO              text
+
+# Templates
+*.dot             text
+*.ejs             text
+*.haml            text
+*.handlebars      text
+*.hbs             text
+*.hbt             text
+*.jade            text
+*.latte           text
+*.mustache        text
+*.njk             text
+*.phtml           text
+*.tmpl            text
+*.tpl             text
+*.twig            text
+*.vue             text
+
+# Configs
+*.cnf             text
+*.conf            text
+*.config          text
+.editorconfig     text
+.env              text
+.gitattributes    text
+.gitconfig        text
+.htaccess         text
+*.lock            text -diff
+package-lock.json text -diff
+*.toml            text
+*.yaml            text
+*.yml             text
+browserslist      text
+Makefile          text
+makefile          text
+
+# Heroku
+Procfile          text
+
+# Graphics
+*.ai              filter=lfs diff=lfs merge=lfs -text
+*.bmp             filter=lfs diff=lfs merge=lfs -text
+*.eps             filter=lfs diff=lfs merge=lfs -text
+*.gif             filter=lfs diff=lfs merge=lfs -text
+*.gifv            filter=lfs diff=lfs merge=lfs -text
+*.ico             filter=lfs diff=lfs merge=lfs -text
+*.jng             filter=lfs diff=lfs merge=lfs -text
+*.jp2             filter=lfs diff=lfs merge=lfs -text
+*.jpg             filter=lfs diff=lfs merge=lfs -text
+*.jpeg            filter=lfs diff=lfs merge=lfs -text
+*.jpx             filter=lfs diff=lfs merge=lfs -text
+*.jxr             filter=lfs diff=lfs merge=lfs -text
+*.pdf             filter=lfs diff=lfs merge=lfs -text
+*.png             filter=lfs diff=lfs merge=lfs -text
+*.psb             filter=lfs diff=lfs merge=lfs -text
+*.psd             filter=lfs diff=lfs merge=lfs -text
+# SVG treated as an asset (binary) by default.
+*.svg             text
+# If you want to treat it as binary,
+# use the following line instead.
+# *.svg           filter=lfs diff=lfs merge=lfs -text
+*.svgz            filter=lfs diff=lfs merge=lfs -text
+*.tif             filter=lfs diff=lfs merge=lfs -text
+*.tiff            filter=lfs diff=lfs merge=lfs -text
+*.wbmp            filter=lfs diff=lfs merge=lfs -text
+*.webp            filter=lfs diff=lfs merge=lfs -text
+
+# Audio
+*.kar             filter=lfs diff=lfs merge=lfs -text
+*.m4a             filter=lfs diff=lfs merge=lfs -text
+*.mid             filter=lfs diff=lfs merge=lfs -text
+*.midi            filter=lfs diff=lfs merge=lfs -text
+*.mp3             filter=lfs diff=lfs merge=lfs -text
+*.ogg             filter=lfs diff=lfs merge=lfs -text
+*.ra              filter=lfs diff=lfs merge=lfs -text
+
+# Video
+*.3gpp            filter=lfs diff=lfs merge=lfs -text
+*.3gp             filter=lfs diff=lfs merge=lfs -text
+*.as              filter=lfs diff=lfs merge=lfs -text
+*.asf             filter=lfs diff=lfs merge=lfs -text
+*.asx             filter=lfs diff=lfs merge=lfs -text
+*.fla             filter=lfs diff=lfs merge=lfs -text
+*.flv             filter=lfs diff=lfs merge=lfs -text
+*.m4v             filter=lfs diff=lfs merge=lfs -text
+*.mng             filter=lfs diff=lfs merge=lfs -text
+*.mov             filter=lfs diff=lfs merge=lfs -text
+*.mp4             filter=lfs diff=lfs merge=lfs -text
+*.mpeg            filter=lfs diff=lfs merge=lfs -text
+*.mpg             filter=lfs diff=lfs merge=lfs -text
+*.ogv             filter=lfs diff=lfs merge=lfs -text
+*.swc             filter=lfs diff=lfs merge=lfs -text
+*.swf             filter=lfs diff=lfs merge=lfs -text
+*.webm            filter=lfs diff=lfs merge=lfs -text
+
+# Archives
+*.7z              filter=lfs diff=lfs merge=lfs -text
+*.gz              filter=lfs diff=lfs merge=lfs -text
+*.jar             filter=lfs diff=lfs merge=lfs -text
+*.rar             filter=lfs diff=lfs merge=lfs -text
+*.tar             filter=lfs diff=lfs merge=lfs -text
+*.zip             filter=lfs diff=lfs merge=lfs -text
+
+# Fonts
+*.ttf             filter=lfs diff=lfs merge=lfs -text
+*.eot             filter=lfs diff=lfs merge=lfs -text
+*.otf             filter=lfs diff=lfs merge=lfs -text
+*.woff            filter=lfs diff=lfs merge=lfs -text
+*.woff2           filter=lfs diff=lfs merge=lfs -text
+
+# Executables
+*.exe             filter=lfs diff=lfs merge=lfs -text
+*.pyc             filter=lfs diff=lfs merge=lfs -text
+
+# RC files (like .babelrc or .eslintrc)
+*.*rc             text
+
+# Ignore files (like .npmignore or .gitignore)
+*.*ignore         text
+
+### Binary files ###
+
+*.Dll        filter=lfs diff=lfs merge=lfs -text
+*.DLL        filter=lfs diff=lfs merge=lfs -text
+*.DS_Store        filter=lfs diff=lfs merge=lfs -text
+*.dylib        filter=lfs diff=lfs merge=lfs -text
+*.EXE        filter=lfs diff=lfs merge=lfs -text
+*.fdf        filter=lfs diff=lfs merge=lfs -text
+*.GIF        filter=lfs diff=lfs merge=lfs -text
+*.gpg        filter=lfs diff=lfs merge=lfs -text
+*.h5        filter=lfs diff=lfs merge=lfs -text
+*.hdf5        filter=lfs diff=lfs merge=lfs -text
+*.ICO        filter=lfs diff=lfs merge=lfs -text
+*.idx        filter=lfs diff=lfs merge=lfs -text
+*.ilk        filter=lfs diff=lfs merge=lfs -text
+*.index        filter=lfs diff=lfs merge=lfs -text
+*.iobj        filter=lfs diff=lfs merge=lfs -text
+*.jfif        filter=lfs diff=lfs merge=lfs -text
+*.jnilib        filter=lfs diff=lfs merge=lfs -text
+*.JPG        filter=lfs diff=lfs merge=lfs -text
+*.keystore        filter=lfs diff=lfs merge=lfs -text
+*.lnk        filter=lfs diff=lfs merge=lfs -text
+*.msi        filter=lfs diff=lfs merge=lfs -text
+*.node        filter=lfs diff=lfs merge=lfs -text
+*.nupkg        filter=lfs diff=lfs merge=lfs -text
+*.ods        filter=lfs diff=lfs merge=lfs -text
+*.p7s        filter=lfs diff=lfs merge=lfs -text
+*.pbix        filter=lfs diff=lfs merge=lfs -text
+*.pdn        filter=lfs diff=lfs merge=lfs -text
+*.pfx        filter=lfs diff=lfs merge=lfs -text
+*.pgp        filter=lfs diff=lfs merge=lfs -text
+*.PNG        filter=lfs diff=lfs merge=lfs -text
+*.potx        filter=lfs diff=lfs merge=lfs -text
+*.ppt        filter=lfs diff=lfs merge=lfs -text
+*.pptx        filter=lfs diff=lfs merge=lfs -text
+*.snk        filter=lfs diff=lfs merge=lfs -text
+*.suo        filter=lfs diff=lfs merge=lfs -text
+*.swp        filter=lfs diff=lfs merge=lfs -text
+*.tlb        filter=lfs diff=lfs merge=lfs -text
+*.tree        filter=lfs diff=lfs merge=lfs -text
+*.TTF        filter=lfs diff=lfs merge=lfs -text
+*.unknownextension        filter=lfs diff=lfs merge=lfs -text
+*.version        filter=lfs diff=lfs merge=lfs -text
+*.vsd        filter=lfs diff=lfs merge=lfs -text
+*.whl        filter=lfs diff=lfs merge=lfs -text
+*.wmv        filter=lfs diff=lfs merge=lfs -text
+*.xls        filter=lfs diff=lfs merge=lfs -text
+*.xlsm        filter=lfs diff=lfs merge=lfs -text
+*.xlsx        filter=lfs diff=lfs merge=lfs -text
+
+### Common extensions for binary and text files ###
+
+*.AddIn        filter=lfs diff=lfs merge=lfs -text
+*.cache        filter=lfs diff=lfs merge=lfs -text
+*.cd        filter=lfs diff=lfs merge=lfs -text
+*.cdf        filter=lfs diff=lfs merge=lfs -text
+*.chm        filter=lfs diff=lfs merge=lfs -text
+*.cpp        filter=lfs diff=lfs merge=lfs -text
+*.crc        filter=lfs diff=lfs merge=lfs -text
+*.crt        filter=lfs diff=lfs merge=lfs -text
+*.cur        filter=lfs diff=lfs merge=lfs -text
+*.dic        filter=lfs diff=lfs merge=lfs -text
+*.doc        filter=lfs diff=lfs merge=lfs -text
+*.document        filter=lfs diff=lfs merge=lfs -text
+*.emf        filter=lfs diff=lfs merge=lfs -text
+*.exp        filter=lfs diff=lfs merge=lfs -text
+*.flf        filter=lfs diff=lfs merge=lfs -text
+*.gemspec        filter=lfs diff=lfs merge=lfs -text
+*.glue        filter=lfs diff=lfs merge=lfs -text
+*.graffle        filter=lfs diff=lfs merge=lfs -text
+*.info        filter=lfs diff=lfs merge=lfs -text
+*.LIC        filter=lfs diff=lfs merge=lfs -text
+*.old        filter=lfs diff=lfs merge=lfs -text
+*.out        filter=lfs diff=lfs merge=lfs -text
+*.pack        filter=lfs diff=lfs merge=lfs -text
+*.plist        filter=lfs diff=lfs merge=lfs -text
+*.pri        filter=lfs diff=lfs merge=lfs -text
+*.proto        filter=lfs diff=lfs merge=lfs -text
+*.rtf        filter=lfs diff=lfs merge=lfs -text
+*.scc        filter=lfs diff=lfs merge=lfs -text
+*.snap        filter=lfs diff=lfs merge=lfs -text
+*.strings        filter=lfs diff=lfs merge=lfs -text
+*.tsv        filter=lfs diff=lfs merge=lfs -text
+*.vsix        filter=lfs diff=lfs merge=lfs -text
+*.vsp        filter=lfs diff=lfs merge=lfs -text
